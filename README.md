@@ -8,13 +8,28 @@ A setup run-thru of [Storybook](https://storybook.js.org) in a stock [Next.js](h
 
 [Instructions](https://nextjs.org/docs)
 
-- use `npx create-next-app --ts --use-npm`
+- run `npx create-next-app --ts --use-npm`
   - npm because i prefer it to yarn
   - typescript because i thought it might add a level of configuration complication
   - **This will create a new project directory. There isn't an `in-place` option.**
 - `cd storybook-nextjs`
 - `npm run dev`
 - `visit http://localhost:3000`
+
+### Storybook
+
+[Instructions](https://storybook.js.org/docs/react/get-started/install)
+
+- run `npx sb init` *in* project root
+  - this makes sense whene there is an existing project (like this). it's not perfectly clear if I were using Storybook to build out a new, single component on design system
+  -  <mark>are there starters for projects like individual components and design systems for folks who want to use Storybook as their primary artifact?</mark>
+
+> audited 1830 packages in 8.289s
+> 236 packages are looking for funding
+>  run `npm fund` for details
+
+> found 40 vulnerabilities (30 moderate, 10 high)
+>   run `npm audit fix` to fix them, or `npm audit` for details
 
 
 ## Notes
