@@ -42,7 +42,72 @@ A setup run-thru of [Storybook](https://storybook.js.org) in a stock [Next.js](h
 
 - `npm run storybook`
   - ✅ works!
+- documentation jumps directly into ["What's a story?"](https://storybook.js.org/docs/react/get-started/whats-a-story)
+  - because we used a generator, there are LOTS of new files. i think a document on the structure is warrented. even if just a link to another doc
+  - items to cover
+    - `.storybook`
+      - `main.js`
+      - `preview.js`
+    - `stories`
+      - `...stories`
+      - `assets`
+      - `introduction.mdx`
+  - interesting time to cover the difference between stories and markdown
+  - Component Story Format (CSF) should be a link to [docs/{library}/api/csf](https://storybook.js.org/docs/react/api/csf)
+  - `alt` tags for images are sparce
+    - consider "Screenshot of Storybook in browser. The sidebar has Story Button/Primary selected. The main are of the site shows the "Canvas" tab with the rendered button"
+  - slight divergance in documentation demo and generated code
 
+_documentation_
 
+```tsx
+// Button.stories.ts | Button.stories.tsx
+
+import React from "react";
+
+import { Story, Meta } from "@storybook/react";
+
+import { Button } from "./Button";
+
+export default {
+  component: Button,
+  title: "Components/Button",
+} as Meta;
+
+//👇 We create a “template” of how args map to rendering
+const Template: Story<ButtonProps> = (args) => <Button {...args} />;
+
+export const Primary = Template.bind({});
+
+Primary.args = {
+  primary: true,
+  label: "Button",
+};
+```
+
+_SB generated_
+
+```tsx
+import React from "react";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
+
+import { Button } from "./Button";
+
+export default {
+  title: "Example/Button",
+  component: Button,
+  argTypes: {
+    backgroundColor: { control: "color" },
+  },
+} as ComponentMeta<typeof Button>;
+
+const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+
+export const Primary = Template.bind({});
+Primary.args = {
+  primary: true,
+  label: "Button",
+};
+```
 
 ## Notes
