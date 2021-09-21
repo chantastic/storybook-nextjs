@@ -284,6 +284,7 @@ https://www.chromatic.com/docs/github-actions
 - covers setup
 - covers secrets
 - i was easily able to reset my token
+- remove previous script and token
 
 ## Notes
 
