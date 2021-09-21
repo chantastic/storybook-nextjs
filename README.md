@@ -141,6 +141,53 @@ Primary.args = {
 - At this point, I'm really curious if there could be some type of generator that would include story setup (which i end up copy-pasting)
 - can we automatically create storybooks for anything in the /pages directory?
 
+### Chromatic
+
+- Login into Chromatic (create account)
+- Choose Github option for selecting a project
+- click on project
+- see instructions
+  - `npm install --save-dev chromatic`
+  - `npx chromatic --project-token=1fd2615c5317`
+    - questions:
+      - is the token refreshable?
+      - what happens if i accidentaly make my token public?
+      - are there instructions for hiding the token?
+      - how do i get back to this link again if i need it later?
+        - [add options](https://www.chromatic.com/docs/cli)
+        - [learn more](https://www.chromatic.com/docs/setup)
+        - is there a way to have a "signed-in" version of these docs with the token (like Stripe)?
+        - automation instructions?
+        - talk about how this is the "baseline"?
+        - reads more like it's just about publishing/hosting
+
+```bash
+Chromatic CLI v0.1.0
+undefined
+
+  ✔ Authenticated with Chromatic
+    → Using project token '********5317'
+  ✔ Retrieved git information
+    → Commit '9d9c3d0' on branch 'main'; no parent commits found
+  ✖ Collecting Storybook metadata
+    → Most likely, you forgot to run npm install or yarn before running Chromatic.
+    Build Storybook
+    Publish your built Storybook
+    Verify your Storybook
+    Test your stories
+    
+Invalid dist-tag 'latest' returned from registry; skipping update check
+
+Unhandled promise rejection: Cannot read property 'email' of undefined
+TypeError: Cannot read property 'email' of undefined
+    at /Users/chantastic/.npm/_npx/15962/lib/node_modules/chromatic/bin/218.main.cjs:251:291
+    at Ge (/Users/chantastic/.npm/_npx/15962/lib/node_modules/chromatic/bin/218.main.cjs:256:99)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async Promise.all (index 0)
+    at async Ze (/Users/chantastic/.npm/_npx/15962/lib/node_modules/chromatic/bin/218.main.cjs:155:214)
+    at async Module.Ve (/Users/chantastic/.npm/_npx/15962/lib/node_modules/chromatic/bin/218.main.cjs:155:101)
+```
+
 ## Notes
 
 ### Interactions as Chromatic light
