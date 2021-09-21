@@ -26,3 +26,13 @@ Basic.args = {
     </React.Fragment>
   ),
 };
+
+export const Duplicate = Template.bind({});
+Basic.args = {
+  children: (
+    <React.Fragment>
+      <h2>I did it for the tests</h2>
+      <p>This is added only to progress thru the Chromatic setup</p>
+    </React.Fragment>
+  ),
+};

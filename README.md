@@ -175,7 +175,7 @@ undefined
     Publish your built Storybook
     Verify your Storybook
     Test your stories
-    
+
 Invalid dist-tag 'latest' returned from registry; skipping update check
 
 Unhandled promise rejection: Cannot read property 'email' of undefined
@@ -187,6 +187,71 @@ TypeError: Cannot read property 'email' of undefined
     at async Ze (/Users/chantastic/.npm/_npx/15962/lib/node_modules/chromatic/bin/218.main.cjs:155:214)
     at async Module.Ve (/Users/chantastic/.npm/_npx/15962/lib/node_modules/chromatic/bin/218.main.cjs:155:101)
 ```
+
+- this was totally a failure on my end. not sure if the install failed, if i typed it wrong, or what. but chromatic didn't get installed and *this* was the problem
+
+```
+Chromatic CLI v0.1.0
+undefined
+
+  ✔ Authenticated with Chromatic
+    → Using project token '********5317'
+  ✔ Retrieved git information
+    → Commit 'aca2d29' on branch 'main'; no parent commits found
+  ✔ Collected Storybook metadata
+    → Storybook v6.3.8 for React; supported addons found: Actions, Essentials, Links
+  ✔ Storybook built in 47 seconds
+    → View build log at /Users/chantastic/Documents/GitHub/storybook-nextjs/build-storybook.log
+  ✔ Publish complete in 8 seconds
+    → View your Storybook at https://614a32227eef4b003adb8599-pbgtyyibez.chromatic.com
+  ✔ Started build 1
+    → Continue setup at https://www.chromatic.com/setup?appId=614a32227eef4b003adb8599
+  ✔ Build 1 auto-accepted
+    → Tested 10 stories across 5 components; captured 10 snapshots in 10 seconds
+
+Invalid dist-tag 'latest' returned from registry; skipping update check
+
+ℹ Speed up Continuous Integration
+Your project is linked to GitHub so Chromatic will report results there.
+This means you can pass the --exit-once-uploaded flag to skip waiting for build results.
+Read more here: https://www.chromatic.com/docs/cli#chromatic-options
+
+✔ Build passed. Welcome to Chromatic!
+We found 5 components with 10 stories and took 10 snapshots.
+ℹ Please continue setup at https://www.chromatic.com/setup?appId=614a32227eef4b003adb8599
+
+⚠ No 'chromatic' script found in your package.json
+Would you like me to add it for you? [y/N]
+```
+
+- all the links are absolutely incredible here!
+- i have felt concerned about how to answer the question an the end without more details (as mentioned above)
+  - went with `y` because i wanted to re-acquaint with what it does
+
+```
+✔ Added script 'chromatic' to package.json
+You can now run it here or in CI with 'npm run chromatic' or 'yarn chromatic'.
+
+ℹ Your project token was added to the script via the --project-token flag.
+If you're running Chromatic via continuous integration, we recommend setting
+the CHROMATIC_PROJECT_TOKEN environment variable in your CI environment.
+You can then remove the --project-token from your package.json script.
+```
+
+![Screenshot of successful first build](./README/Screen Shot 2021-09-21 at 1.04.09 PM.png)
+![Screenshot of screen informing me how to capture a change](./README/Screen Shot 2021-09-21 at 1.07.40 PM.png)
+
+This line gets added when I publish without changes
+
+```
+No changes found in the Storybook you published. Make a UI tweak and publish again to continue the demo.
+```
+
+I'd really like a "Skip" option or "show me this later" option when I'm just trying to get set up. As it stands, I'm not allowed to proceed until I do this. But I don't have anything that I want to *change* at the moment.
+
+I have personally aborted this screen on many occasions.
+
+Here, I will add an arbitrary story just to get it to pass.
 
 ## Notes
 
