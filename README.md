@@ -259,6 +259,32 @@ Might be worth mentioning, at this point, that I can push anything I want. Can I
 
 Just pushed a build without committing. I've never thought about doing that but totally makes sense. I'm using Chromatic to update the baseline.
 
+---
+
+At this point, I'm most curious about best practices for setting this up.
+Some thoughts:
+  - If have a private repo, i'm not worriedb about tokens. More so in OSS
+  - As a user, my next big question is "how do i set this up with CI"
+    - But the first messaging I see is "Share this project with your teammates"
+    - I'd prefer "How to integrate with CI"
+
+I didn't realize until this point that the links were part of a guide. Is this stated somewhere in the beginning of the setup process?
+
+I'm continuing to develop my understanding of devisions:
+  - Storybook (component development environment and showcase)
+  - UI Test (compare builds against )
+
+Great [information about tokens](https://www.chromatic.com/docs/review#pull-requests-from-forks)
+
+[Article on configuring CI](https://www.chromatic.com/docs/ci#configure-ci)
+
+### Storybook + Chromatic + GitHub Actions
+
+https://www.chromatic.com/docs/github-actions
+- covers setup
+- covers secrets
+- i was easily able to reset my token
+
 ## Notes
 
 ### Interactions as Chromatic light
