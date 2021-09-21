@@ -138,5 +138,12 @@ Primary.args = {
       - https://github.com/vercel/next.js/issues/18393#issuecomment-722024125
       - https://github.com/vercel/next.js/issues/18393#issuecomment-749631898
   - deferring to next commit
+- At this point, I'm really curious if there could be some type of generator that would include story setup (which i end up copy-pasting)
+- can we automatically create storybooks for anything in the /pages directory?
 
 ## Notes
+
+### Interactions as Chromatic light
+- I'm still forming a boundary around what Storybook is without Chromatic. And what the value is for developers
+- Interactions changes the value proposition quite a bit
+  - can i test navigation?
