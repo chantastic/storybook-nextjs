@@ -28,7 +28,7 @@ Basic.args = {
 };
 
 export const Duplicate = Template.bind({});
-Basic.args = {
+Duplicate.args = {
   children: (
     <React.Fragment>
       <h2>I did it for the tests</h2>
