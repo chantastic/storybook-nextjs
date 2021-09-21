@@ -110,4 +110,33 @@ Primary.args = {
 };
 ```
 
+- Setup a story outside of `/stories`
+  - update config to include path
+  - add story
+  - restart server (not sure if this is always the case for config)
+  - [include global css](https://storybook.js.org/docs/react/configure/overview#configure-story-rendering), link conveniently supplied
+    - but there are no examples. kinda goes in a link loop
+- Why don't I see type errors for `href` when attempting to use the component in a `.tsx` story?
+- import `styles/globals.css` to `.storybook/preview.js`
+- import `styles/Home.module.css` into `index.stories.tsx`
+- no info here on CSS Modules
+  - searched and got a lot of "Storybook CSS Modules don't work" hits
+    - https://github.com/storybookjs/storybook/issues/12464
+    - nothing on the [Styling and CSS](https://storybook.js.org/docs/react/configure/styling-and-css) page
+    - [storybook-css-moudles-preset](https://www.npmjs.com/package/storybook-css-modules-preset) is the first promising result
+      - `npm install -D storybook-css-modules-preset`
+      - `40 fvulnerabilities (30 moderate, 10 high)`
+      - append `storybook-css-modules-preset` to `addons` in `./storybook/main.js`
+      - works
+      - if this is the preferred way, we should document it. if not, we should create a new package
+  - static next assets aren't available
+    - https://www.google.com/search?q=storybook+assets+next.js&client=safari&rls=en&sxsrf=AOaemvIo6KjwrayvVGhUoG2-A9_PTB4JcA%3A1632184464335&ei=kChJYfTgE6y_0PEP_Muh6Ao&oq=storybook+assets+next.js&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEM0CMgUIABDNAjoHCAAQRxCwAzoICAAQ5AIQsAM6BQgAEIAEOgYIABAWEB46BQghEKABOgcIIRAKEKABSgUIPBIBMUoECEEYAFDHXVi3Z2DAamgBcAJ4AIAB4AGIAfcKkgEFMC42LjKYAQCgAQHIAQvAAQE&sclient=gws-wiz&ved=0ahUKEwj06ND56I7zAhWsHzQIHfxlCK0Q4dUDCA0&uact=5
+    - https://stackoverflow.com/questions/64016896/cant-serve-static-files-in-nextjs-storybook
+    - https://storybook.js.org/docs/react/configure/images-and-assets#serving-static-files-via-storybook
+    - https://dev.to/jonasmerlin/how-to-use-the-next-js-image-component-in-storybook-1415
+    - https://github.com/vercel/next.js/issues/18393
+      - https://github.com/vercel/next.js/issues/18393#issuecomment-722024125
+      - https://github.com/vercel/next.js/issues/18393#issuecomment-749631898
+  - deferring to next commit
+
 ## Notes
