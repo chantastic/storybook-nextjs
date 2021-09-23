@@ -286,6 +286,13 @@ https://www.chromatic.com/docs/github-actions
 - i was easily able to reset my token
 - remove previous script and token
 
+### API data and MSW?
+
+- Add `getServerSideProps` to fetch API data from `/api/hello`
+  - Works on the site, obvi
+  - Doesn't break chromatic, because the prop is (technically) optional
+  - I can provide it as prop manually via args
+
 ## Notes
 
 ### Interactions as Chromatic light

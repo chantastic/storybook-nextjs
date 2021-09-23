@@ -4,7 +4,22 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { AnchorCard } from "../modules/cards";
 
-const Home: NextPage = () => {
+export async function getServerSideProps() {
+  const res = await fetch(`http://localhost:3000/api/hello`)
+  const data = await res.json()
+
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    props: data,
+  }
+}
+
+const Home: NextPage = (props) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -15,7 +30,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to <a href="https://nextjs.org">Next.js, {props.name}!</a>
         </h1>
 
         <p className={styles.description}>
