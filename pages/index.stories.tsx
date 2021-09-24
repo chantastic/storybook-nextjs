@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import "../styles/Home.module.css";
 
-import Home from "./index";
+import Home, { getServerSideProps } from "./index";
 
 export default {
   title: "Pages/Home",
@@ -10,7 +10,18 @@ export default {
   argTypes: {},
 } as ComponentMeta<typeof Home>;
 
-const Template: ComponentStory<typeof Home> = (args) => <Home {...args} />;
+export const Basic = (
+  args: ComponentStory<typeof Home>,
+  { loaded: serverSideProps }: { loaded: { name: string } }
+) => {
+  return <Home {...serverSideProps} {...args} />;
+};
+Basic.loaders = [
+  async () => {
+    let serverSideProps = await getServerSideProps().catch(() => ({
+      name: "John Doh",
+    }));
 
-export const Basic = Template.bind({});
-Basic.args = { name: "John Doe (Args)"};
+    return serverSideProps;
+  },
+];

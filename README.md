@@ -292,6 +292,36 @@ https://www.chromatic.com/docs/github-actions
   - Works on the site, obvi
   - Doesn't break chromatic, because the prop is (technically) optional
   - I can provide it as prop manually via args
+- Can I import and call `getServerSideProps`?
+  - yes but the request will need to be mocked
+  - ??? i can get the data in using client-side React, with `useEffect` and `useState`. but this changes the behavior of the story, from the behavior of the page
+    - is there a way to defer the story rendering until all data is collected? this is more akin to gSSP
+      - [This loaders doc suggests use of args instead](https://storybook.js.org/docs/react/writing-stories/loaders)
+      - [Core: Add async loader](https://github.com/storybookjs/storybook/pull/12699) by Michael Shilman
+      - loaders work!
+- Introduce `loader` to call `getServerSideProps` function
+  - Now we can `await` data but ensure that it's present pre-render
+    - This matches our expectation of `getServerSideProps`
+  - We're not mocking anything yet. We're catching the failed call to the API endpoint and returning data.
+  - There's a step (maybe even before this), where let it make the call, and just run the server (as a demonstration)
+    - nevermind. that requires a CORS side-quest. maybe worth exploring but not on the critical path
+
+
+### (didn't need msw yet. i can mock manually. circling back)
+  - `npm i -D msw msw-storybook-addon`
+  - enable msw, per instructions
+
+```
+// preview.js
+import { addDecorator } from '@storybook/react'
+import { initializeWorker, mswDecorator } from 'msw-storybook-addon'
+
+initializeWorker()
+addDecorator(mswDecorator)
+```
+
+  - run `npx msw init public/`
+  - update storybook script to include public: `npx start-storybook -s public -p 6006`
 
 ## Notes
 
