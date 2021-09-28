@@ -188,7 +188,7 @@ TypeError: Cannot read property 'email' of undefined
     at async Module.Ve (/Users/chantastic/.npm/_npx/15962/lib/node_modules/chromatic/bin/218.main.cjs:155:101)
 ```
 
-- this was totally a failure on my end. not sure if the install failed, if i typed it wrong, or what. but chromatic didn't get installed and *this* was the problem
+- this was totally a failure on my end. not sure if the install failed, if i typed it wrong, or what. but chromatic didn't get installed and _this_ was the problem
 
 ```
 Chromatic CLI v0.1.0
@@ -247,7 +247,7 @@ This line gets added when I publish without changes
 No changes found in the Storybook you published. Make a UI tweak and publish again to continue the demo.
 ```
 
-I'd really like a "Skip" option or "show me this later" option when I'm just trying to get set up. As it stands, I'm not allowed to proceed until I do this. But I don't have anything that I want to *change* at the moment.
+I'd really like a "Skip" option or "show me this later" option when I'm just trying to get set up. As it stands, I'm not allowed to proceed until I do this. But I don't have anything that I want to _change_ at the moment.
 
 I have personally aborted this screen on many occasions.
 
@@ -263,16 +263,18 @@ Just pushed a build without committing. I've never thought about doing that but 
 
 At this point, I'm most curious about best practices for setting this up.
 Some thoughts:
-  - If have a private repo, i'm not worriedb about tokens. More so in OSS
-  - As a user, my next big question is "how do i set this up with CI"
-    - But the first messaging I see is "Share this project with your teammates"
-    - I'd prefer "How to integrate with CI"
+
+- If have a private repo, i'm not worriedb about tokens. More so in OSS
+- As a user, my next big question is "how do i set this up with CI"
+  - But the first messaging I see is "Share this project with your teammates"
+  - I'd prefer "How to integrate with CI"
 
 I didn't realize until this point that the links were part of a guide. Is this stated somewhere in the beginning of the setup process?
 
 I'm continuing to develop my understanding of devisions:
-  - Storybook (component development environment and showcase)
-  - UI Test (compare builds against )
+
+- Storybook (component development environment and showcase)
+- UI Test (compare builds against )
 
 Great [information about tokens](https://www.chromatic.com/docs/review#pull-requests-from-forks)
 
@@ -281,6 +283,7 @@ Great [information about tokens](https://www.chromatic.com/docs/review#pull-requ
 ### Storybook + Chromatic + GitHub Actions
 
 https://www.chromatic.com/docs/github-actions
+
 - covers setup
 - covers secrets
 - i was easily able to reset my token
@@ -306,10 +309,12 @@ https://www.chromatic.com/docs/github-actions
   - There's a step (maybe even before this), where let it make the call, and just run the server (as a demonstration)
     - nevermind. that requires a CORS side-quest. maybe worth exploring but not on the critical path
 
-
 ### (didn't need msw yet. i can mock manually. circling back)
-  - `npm i -D msw msw-storybook-addon`
-  - enable msw, per instructions
+
+https://storybook.js.org/addons/msw-storybook-addon
+
+- `npm i -D msw msw-storybook-addon`
+- enable msw, per instructions
 
 ```
 // preview.js
@@ -320,12 +325,26 @@ initializeWorker()
 addDecorator(mswDecorator)
 ```
 
-  - run `npx msw init public/`
-  - update storybook script to include public: `npx start-storybook -s public -p 6006`
+- run `npx msw init public/`
+- update storybook script to include public: `start-storybook -s public -p 6006`
+
+`[MSW] "initializeWorker" is now deprecated, please use "initialize" instead. This method will be removed in future releases.`
+
+- update code to `initialize`
+
+`FetchEvent.respondWith received an error: Returned response is null`
+
+- I'me experiencing load error issue. MSW fails to capture requests on refreshes.
+  - if i start by catching the error, then enabling msw, i see msw in the logs
+  - but on refresh, msw is enabled but does not respond to the request
+- ugh! i was calling `.json()` on the response from `getServerSideProps` which obviously screwed up responses. but nothing to do with the error above
+- At this point things are working but not reliably. msw is not loading before the story. further work is needed to make it work with loaders
+
 
 ## Notes
 
 ### Interactions as Chromatic light
+
 - I'm still forming a boundary around what Storybook is without Chromatic. And what the value is for developers
 - Interactions changes the value proposition quite a bit
   - can i test navigation?

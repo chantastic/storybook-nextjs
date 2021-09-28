@@ -1,7 +1,12 @@
 import "../styles/globals.css";
+import { addDecorator } from "@storybook/react";
+import { initialize, mswDecorator } from "msw-storybook-addon";
 
 // https://github.com/vercel/next.js/issues/18393#issuecomment-909636489
 import * as NextImage from "next/image";
+
+initialize();
+addDecorator(mswDecorator);
 
 const OriginalNextImage = NextImage.default;
 
