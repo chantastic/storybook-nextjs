@@ -340,6 +340,42 @@ addDecorator(mswDecorator)
 - ugh! i was calling `.json()` on the response from `getServerSideProps` which obviously screwed up responses. but nothing to do with the error above
 - At this point things are working but not reliably. msw is not loading before the story. further work is needed to make it work with loaders
 
+#### mswDecorator exploration
+
+I'm still having trouble loading. I'm going to remove the decorator, provided by the addon, and replipcate it myself:
+
+https://github.com/mswjs/msw-storybook-addon/blob/master/packages/msw-addon/src/mswDecorator.js#L39-L54
+
+```jsx
+export const mswDecorator = (storyFn, { parameters: { msw = [] } }) => {
+  if (api) {
+    api.resetHandlers()
+
+    if (!Array.isArray(msw)) {
+      throw new Error(`[MSW] expected to receive an array of handlers but received "${typeof msw}" instead.
+        Please refer to the documentation: https://mswjs.io/docs/getting-started/mocks/`)
+    }
+
+    if (msw.length > 0) {
+      api.use(...msw)
+    }
+  }
+
+  return storyFn()
+}
+```
+
+found this helpful post on general initialization issues. this is definitely what i'm facing.
+
+https://github.com/mswjs/msw/issues/73
+
+
+- initializing in `preview.js`
+- logging from `loader`
+  - see access to parameters (including msw)
+  - no direct way of determining if msw loaded
+- removing `msw-storybook-addon` and initializing on my own worked without issue or additional consideration
+
 
 ## Notes
 

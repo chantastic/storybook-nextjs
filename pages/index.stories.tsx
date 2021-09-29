@@ -1,7 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import "../styles/Home.module.css";
-import { rest } from "msw";
 
 import Home, { getServerSideProps } from "./index";
 
@@ -24,14 +23,3 @@ Basic.loaders = [
     return serverSideProps.props;
   },
 ];
-Basic.parameters = {
-  msw: [
-    rest.get("http://localhost:3000/api/hello", (req, res, ctx) => {
-      return res(
-        ctx.json({
-          name: "John Doe",
-        })
-      );
-    }),
-  ],
-};
